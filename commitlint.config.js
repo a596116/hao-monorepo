@@ -1,0 +1,101 @@
+/** @type {import('cz-git').UserConfig} */
+export default {
+  // 繼承的規則
+  extends: ["@commitlint/config-conventional"],
+  // @see: https://commitlint.js.org/#/reference-rules
+  rules: {
+    "body-leading-blank": [2, "always"], // 主題行後必須有一個空行
+    "footer-leading-blank": [1, "always"], // 腳註行後必須有一個空行
+    "header-max-length": [2, "always", 208], // 主題行最大長度為 208 個字符
+    "subject-empty": [2, "never"], // 主題行不能為空
+    "type-empty": [2, "never"], // 類型行不能為空
+    "subject-case": [0], // subject大小寫不做校驗
+
+    // 類型枚舉，git提交type必須是以下類型
+    "type-enum": [
+      // 當前驗證的錯誤級別
+      2,
+      // 在什麼情況下進行驗證，always表示一直進行驗證
+      "always",
+      [
+        "feat", // 新增功能
+        "fix", // 修復缺陷
+        "docs", // 文檔變更
+        "style", // 代碼格式（不影響功能，例如空格、分號等格式修正）
+        "refactor", // 代碼重構（不包括 bug 修復、功能新增）
+        "perf", // 性能優化
+        "test", // 添加疏漏測試或已有測試改動
+        "build", // 構建流程、外部依賴變更（如升級 npm 包、修改 webpack 配置等）
+        "ci", // 修改 CI 配置、腳本
+        "revert", // 回滾 commit
+        "chore", // 對構建過程或輔助工具和庫的更改（不影響源文件、測試用例）
+        "types", // 類型定義文件更改
+        "wip", // 工作進行中
+        "release", // 發布版本
+        "workflow" // 工作流
+      ]
+    ]
+  },
+  prompt: {
+    messages: {
+      type: "請選擇您要 Commit 的類型(必選)：",
+      scope: "选择一个提交范围：",
+      customScope: "選擇此次 Commit 影響的範圍(可選，若無，請按 Enter 略過)：",
+      subject: "簡短描述 Commit 的修正範圍(必填)：\n",
+      body: "更詳細的 Commit 說明(可選，若無，請按 Enter 略過)：\n ",
+      breaking: "列出所有重大更改(可選，若無，請按 Enter 略過)：\n",
+      footerPrefixesSelect: "選擇關聯issue前缀(可選，若無，請按 Enter 略過)：\n",
+      customFooterPrefix: "輸入自定義issue前缀：",
+      footer: "列舉關聯issue (可選，若無，請按 Enter 略過) 例如: #31, #I3244：\n",
+      //   generatingByAI: '正在通過 AI 生成你的提交簡短描述...',
+      //   generatedSelectByAI: '選擇一個 AI 生成的簡短描述:',
+      confirmCommit: "請確認本次 Commit 描述。\n"
+    },
+    skipQuestions: ["body", "footerPrefix", "footer", "breaking"], // 跳過“詳細描述”和“底部信息”
+    // prettier-ignore
+    types: [
+      { value: "feat",     name: "特性feat:     ✨  新增功能" },
+      { value: "fix",      name: "修復fix:     🐛  修復功能" },
+      { value: "docs",     name: "文檔docs:     📝  文檔變更" },
+      { value: "style",    name: "格式style:     💄  代碼格式（不影響功能，例如空格、分號等格式修正）" },
+      { value: "refactor", name: "重構refactor:     ♻️  代碼重構（不包括 bug 修復、功能新增）" },
+      { value: "perf",     name: "性能perf:     ⚡️  性能優化" },
+      { value: "test",     name: "測試test:     ✅  添加疏漏測試或已有測試改動" },
+      { value: "build",    name: "構建build:     📦️  構建流程、外部依賴變更（如升級 npm 包、修改 vite 配置等）" },
+      { value: "ci",       name: "集成ci:     🎡  修改 CI 配置、脚本" },
+      { value: "revert",   name: "回退revert:     ⏪️  回滚 commit" },
+      { value: "chore",    name: "其他chore:     🔨  對構建過程或輔助工具和庫的更改（不影響源文件、測試用例）" },
+      { value: "types",    name: "類型types:     🏷️  類型定義文件更改" },
+    ],
+    useEmoji: false,
+    useAI: false,
+    aiNumber: 1,
+    themeColorCode: "",
+    scopes: ["root", "backend", "admin-dashboard", "customer-portal", "components", "utils"],
+    allowCustomScopes: true,
+    allowEmptyScopes: true,
+    customScopesAlign: "bottom",
+    customScopesAlias: "custom",
+    emptyScopesAlias: "empty",
+    upperCaseSubject: false,
+    markBreakingChangeMode: false,
+    allowBreakingChanges: ["feat", "fix"],
+    breaklineNumber: 100,
+    breaklineChar: "|",
+    issuePrefixes: [{ value: "closed", name: "closed:   ISSUES has been processed" }],
+    customIssuePrefixAlign: "top",
+    emptyIssuePrefixAlias: "skip",
+    customIssuePrefixAlias: "custom",
+    allowCustomIssuePrefix: true,
+    allowEmptyIssuePrefix: true,
+    confirmColorize: true,
+    maxHeaderLength: Infinity,
+    maxSubjectLength: Infinity,
+    minSubjectLength: 0,
+    scopeOverrides: undefined,
+    defaultBody: "",
+    defaultIssues: "",
+    defaultScope: "",
+    defaultSubject: ""
+  }
+}
