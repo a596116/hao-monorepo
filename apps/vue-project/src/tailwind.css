@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 安全區域支持 - 參考 Vant4 的做法，直接在 body 層面處理 */
+@layer base {
+  :root {
+    /* 安全區域變量，用於處理設備的凹槽和安全區域 */
+    --safe-area-inset-top: env(safe-area-inset-top, 0px);
+    --safe-area-inset-right: env(safe-area-inset-right, 0px);
+    --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-area-inset-left: env(safe-area-inset-left, 0px);
+
+    /* 動態視口高度變量 - 由 JavaScript 動態設置，解決移動瀏覽器地址欄問題 */
+    --vh: 1vh;
+  }
+
+  /* 在 body 層面處理安全區域 - 直接用 body 扣掉安全區域 */
+  body {
+    /* body 自動扣掉底部安全區域，確保內容不被遮擋 */
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    /* 頂部安全區域（適配有瀏海的設備） */
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+/* 覆蓋 Tailwind 的 h-screen，使用動態視口高度解決移動瀏覽器地址欄問題 */
+.h-screen {
+  /* 降級方案：不支持動態視口的瀏覽器 */
+  /* height: 100vh; */
+  /* 優先使用 JavaScript 設置的動態視口高度變量（解決地址欄問題） */
+  /* height: calc(var(--vh, 1vh) * 100); */
+}
+
+/* 現代瀏覽器支持：使用 100dvh（動態視口高度），自動適應地址欄的顯示/隱藏 */
+@supports (height: 100dvh) {
+  .h-screen {
+    /* height: 100dvh; */
+  }
+}

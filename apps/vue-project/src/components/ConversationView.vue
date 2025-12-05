@@ -1,5 +1,5 @@
 <template>
-  <div class="flex overflow-hidden flex-col w-screen h-screen text-white bg-black">
+  <div class="flex overflow-hidden flex-col w-screen text-white bg-black h-dvh">
     <!-- 頂部導航 -->
     <div class="flex justify-between items-center px-4 py-3 border-b border-gray-800">
       <div class="w-24"></div>

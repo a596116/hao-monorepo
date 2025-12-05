@@ -49,7 +49,7 @@
 
     <!-- 固定在底部的麥克風按鈕（帶半透明漸層模糊背景） -->
     <div
-      class="flex absolute right-0 bottom-0 left-0 justify-center items-center px-4 h-[200px] pointer-events-none bottom-container"
+      class="flex absolute right-0 bottom-0 left-0 justify-center items-center px-4 h-[120px] pointer-events-none bottom-container"
     >
       <div class="pointer-events-auto">
         <MicrophoneButton @click="handleBothMicClick" />
@@ -139,7 +139,7 @@ const handleBothMicClick = () => {
 <style scoped>
 .scroll-container {
   /* 減少底部空間，讓輸入框可以超出滾動容器底部 */
-  padding-bottom: 180px;
+  padding-bottom: 100px;
   /* 允許內容可以稍微超出底部顯示 */
   overflow-y: auto;
   overflow-x: hidden;
