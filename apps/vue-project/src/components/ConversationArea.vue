@@ -59,36 +59,34 @@
 </template>
 
 <script setup lang="ts">
-import MessageBubble from './MessageBubble.vue'
-import LanguageInput from './LanguageInput.vue'
-import MicrophoneButton from './MicrophoneButton.vue'
-import type { ConversationMessage, LanguageCode } from '../types/conversation'
+import MessageBubble from "./MessageBubble.vue"
+import LanguageInput from "./LanguageInput.vue"
+import MicrophoneButton from "./MicrophoneButton.vue"
+import type { ConversationMessage, LanguageCode } from "../types/conversation"
 
 interface Props {
   messages: ConversationMessage[]
 }
 
 interface Emits {
-  (e: 'mic-click', position: 'left' | 'right'): void
-  (e: 'play-message', messageId: string): void
-  (e: 'send-message', position: 'left' | 'right'): void
+  (e: "mic-click", position: "left" | "right"): void
+  (e: "play-message", messageId: string): void
+  (e: "send-message", position: "left" | "right"): void
 }
 
 const props = defineProps<Props>()
 const emit = defineEmits<Emits>()
-const leftInputLanguage = defineModel<LanguageCode>('leftInputLanguage', { required: true })
-const rightInputLanguage = defineModel<LanguageCode>('rightInputLanguage', { required: true })
-const leftInput = defineModel<string>('leftInput', { required: true })
-const rightInput = defineModel<string>('rightInput', { required: true })
+const leftInputLanguage = defineModel<LanguageCode>("leftInputLanguage", { required: true })
+const rightInputLanguage = defineModel<LanguageCode>("rightInputLanguage", { required: true })
+const leftInput = defineModel<string>("leftInput", { required: true })
+const rightInput = defineModel<string>("rightInput", { required: true })
 
 // 滾動容器引用
 const scrollContainer = ref<HTMLElement | null>(null)
 
 // 對話模式：按時間排序的混合消息列表
 const sortedMessages = computed(() => {
-  const chatMessages = props.messages.filter(
-    (msg) => msg.position === 'left' || msg.position === 'right',
-  )
+  const chatMessages = props.messages.filter(msg => msg.position === "left" || msg.position === "right")
   return [...chatMessages].sort((a, b) => a.timestamp - b.timestamp)
 })
 
@@ -107,7 +105,7 @@ watch(
   () => {
     scrollToBottom()
   },
-  { deep: true },
+  { deep: true }
 )
 
 // 組件掛載時滾動到底部
@@ -117,16 +115,16 @@ onMounted(() => {
 
 // 處理輸入框 Enter 鍵
 const handleLeftKeydown = (e: KeyboardEvent) => {
-  if (e.key === 'Enter' && !e.shiftKey) {
+  if (e.key === "Enter" && !e.shiftKey) {
     e.preventDefault()
-    emit('send-message', 'left')
+    emit("send-message", "left")
   }
 }
 
 const handleRightKeydown = (e: KeyboardEvent) => {
-  if (e.key === 'Enter' && !e.shiftKey) {
+  if (e.key === "Enter" && !e.shiftKey) {
     e.preventDefault()
-    emit('send-message', 'right')
+    emit("send-message", "right")
   }
 }
 
@@ -134,7 +132,7 @@ const handleRightKeydown = (e: KeyboardEvent) => {
 const handleBothMicClick = () => {
   // 可以選擇觸發左側或右側，這裡選擇左側
   // 或者可以發送一個特殊事件，讓父組件決定
-  emit('mic-click', 'left')
+  emit("mic-click", "left")
 }
 </script>
 

@@ -7,22 +7,22 @@
 </template>
 
 <script setup lang="ts">
-import Button from 'primevue/button'
+import Button from "primevue/button"
 
 interface Props {
-  displayMode: 'chat' | 'face-to-face'
+  displayMode: "chat" | "face-to-face"
 }
 
 interface Emits {
-  (e: 'update:displayMode', value: 'chat' | 'face-to-face'): void
+  (e: "update:displayMode", value: "chat" | "face-to-face"): void
 }
 
 const props = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
 const toggleMode = () => {
-  const newMode = props.displayMode === 'chat' ? 'face-to-face' : 'chat'
-  emit('update:displayMode', newMode)
+  const newMode = props.displayMode === "chat" ? "face-to-face" : "chat"
+  emit("update:displayMode", newMode)
 }
 </script>
 

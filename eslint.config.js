@@ -34,11 +34,7 @@ export default defineConfig(
   // 前端配置
   {
     ignores,
-    files: [
-      "apps/**/*.{ts,js,tsx,jsx,vue}",
-      "apps/customer-portal/**/*.{ts,js,tsx,jsx,vue}",
-      "packages/components/**/*.{ts,js,tsx,jsx,vue}"
-    ],
+    files: ["apps/**/*.{ts,js,tsx,jsx,vue}"],
     extends: [
       ...eslintPluginVue.configs["flat/recommended"],
       eslintConfigPrettier,

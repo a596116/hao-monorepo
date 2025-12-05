@@ -1,10 +1,10 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from "node:url"
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
+import { defineConfig } from "vite"
+import vue from "@vitejs/plugin-vue"
+import vueDevTools from "vite-plugin-vue-devtools"
+import AutoImport from "unplugin-auto-import/vite"
+import Components from "unplugin-vue-components/vite"
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -13,24 +13,24 @@ export default defineConfig({
     vueDevTools(),
     AutoImport({
       imports: [
-        'vue',
+        "vue",
         {
-          pinia: ['defineStore', 'storeToRefs'],
-        },
+          pinia: ["defineStore", "storeToRefs"]
+        }
       ],
-      dts: 'src/auto-imports.d.ts',
+      dts: "src/auto-imports.d.ts",
       eslintrc: {
-        enabled: true,
+        enabled: true
       },
-      vueTemplate: true,
+      vueTemplate: true
     }),
     Components({
-      dts: 'src/components.d.ts',
-    }),
+      dts: "src/components.d.ts"
+    })
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
-  },
+      "@": fileURLToPath(new URL("./src", import.meta.url))
+    }
+  }
 })

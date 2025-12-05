@@ -1,8 +1,5 @@
 <template>
-  <Button
-    :class="['p-button-circle microphone-button', isFlipped ? 'transform rotate-180' : '']"
-    @click="handleClick"
-  >
+  <Button :class="['p-button-circle microphone-button', isFlipped ? 'transform rotate-180' : '']" @click="handleClick">
     <div :class="isFlipped ? 'transform rotate-180' : ''">
       <i class="pi pi-microphone text-2xl"></i>
     </div>
@@ -10,21 +7,21 @@
 </template>
 
 <script setup lang="ts">
-import Button from 'primevue/button'
+import Button from "primevue/button"
 
 interface Props {
   isFlipped?: boolean
 }
 
 interface Emits {
-  (e: 'click'): void
+  (e: "click"): void
 }
 
 defineProps<Props>()
 const emit = defineEmits<Emits>()
 
 const handleClick = () => {
-  emit('click')
+  emit("click")
 }
 </script>
 

@@ -4,7 +4,7 @@
       :class="[
         'rounded-2xl p-4 mb-3 max-w-[80%]',
         isOwn ? 'ml-auto bg-teal-500' : 'mr-auto bg-gray-700',
-        isFlipped ? 'transform rotate-180' : '',
+        isFlipped ? 'transform rotate-180' : ''
       ]"
     >
       <div :class="isFlipped ? 'transform rotate-180' : ''">

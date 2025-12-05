@@ -6,6 +6,10 @@
   "scripts": {
     "dev": "pnpm --parallel --recursive dev",
     "dev:t1": "pnpm --filter vue-project dev",
+    "dev:t2": "pnpm --filter vuetify-project dev",
+    "build": "pnpm --parallel --recursive build",
+    "build:t1": "pnpm --filter vue-project build",
+    "build:t2": "pnpm --filter vuetify-project build",
     "clean": "pnpm --recursive clean",
     "lint": "pnpm run lint:prettier && pnpm run lint:eslint",
     "lint:prettier": "prettier --write \"**/*.{js,ts,mjs,cjs,json,tsx,css,less,scss,vue,html,md}\"",

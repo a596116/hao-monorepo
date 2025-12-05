@@ -32,11 +32,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue'
-import InputText from 'primevue/inputtext'
-import Select from 'primevue/select'
-import type { LanguageCode } from '../types/conversation'
-import { LANGUAGE_CONFIGS } from '../types/conversation'
+import { ref, watch, computed } from "vue"
+import InputText from "primevue/inputtext"
+import Select from "primevue/select"
+import type { LanguageCode } from "../types/conversation"
+import { LANGUAGE_CONFIGS } from "../types/conversation"
 
 interface Props {
   languageCode: LanguageCode
@@ -46,22 +46,22 @@ interface Props {
 }
 
 interface Emits {
-  (e: 'update:modelValue', value: string): void
-  (e: 'update:languageCode', value: LanguageCode): void
-  (e: 'keydown', event: KeyboardEvent): void
+  (e: "update:modelValue", value: string): void
+  (e: "update:languageCode", value: LanguageCode): void
+  (e: "keydown", event: KeyboardEvent): void
 }
 
 const props = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
-const inputValue = ref(props.modelValue || '')
+const inputValue = ref(props.modelValue || "")
 const selectedLanguage = ref<LanguageCode>(props.languageCode)
 
 // 語言選項
 const languageOptions = computed(() => {
-  return Object.values(LANGUAGE_CONFIGS).map((config) => ({
+  return Object.values(LANGUAGE_CONFIGS).map(config => ({
     code: config.code,
-    label: config.label,
+    label: config.label
   }))
 })
 
@@ -72,28 +72,28 @@ const getLanguageLabel = (code: LanguageCode): string => {
 
 watch(
   () => props.modelValue,
-  (newVal) => {
-    inputValue.value = newVal || ''
-  },
+  newVal => {
+    inputValue.value = newVal || ""
+  }
 )
 
 watch(
   () => props.languageCode,
-  (newVal) => {
+  newVal => {
     selectedLanguage.value = newVal
-  },
+  }
 )
 
 const handleInput = () => {
-  emit('update:modelValue', inputValue.value)
+  emit("update:modelValue", inputValue.value)
 }
 
 const handleKeydown = (event: KeyboardEvent) => {
-  emit('keydown', event)
+  emit("keydown", event)
 }
 
 const handleLanguageChange = () => {
-  emit('update:languageCode', selectedLanguage.value)
+  emit("update:languageCode", selectedLanguage.value)
 }
 </script>
 

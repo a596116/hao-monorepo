@@ -1,0 +1,160 @@
+{
+  "common": {
+    "appTitle": "Vuetify 專案",
+    "welcome": "歡迎",
+    "home": "首頁",
+    "about": "關於",
+    "contact": "聯絡我們",
+    "login": "登入",
+    "logout": "登出",
+    "submit": "提交",
+    "cancel": "取消",
+    "save": "儲存",
+    "edit": "編輯",
+    "delete": "刪除",
+    "confirm": "確認",
+    "search": "搜尋",
+    "close": "關閉",
+    "back": "返回",
+    "next": "下一步",
+    "previous": "上一步",
+    "select": "選擇",
+    "selectFile": "選擇文件",
+    "openDialog": "打開對話框",
+    "visitCount": "訪問次數"
+  },
+  "menu": {
+    "home": "首頁",
+    "charts": "圖表展示",
+    "chartTable": "圖表與表格",
+    "osUsage": "操作系統統計",
+    "kpiOverview": "KPI 總覽",
+    "pivotTable": "數據透視表",
+    "notificationDemo": "通知組件",
+    "drawerDemo": "Drawer 抽屜",
+    "loadingDemo": "Loading 載入",
+    "inputDemo": "Input 輸入框",
+    "i18nDemo": "多語系示範",
+    "componentsDemo": "組件展示",
+    "datetimeDemo": "日期時間輸入"
+  },
+  "user": {
+    "profile": "個人資料",
+    "settings": "設定",
+    "role": "管理員"
+  },
+  "table": {
+    "title": "表格",
+    "expandAll": "展開全部",
+    "collapseAll": "縮合全部",
+    "name": "名稱",
+    "category": "類別",
+    "count": "數量",
+    "status": "狀態",
+    "noData": "暫無資料",
+    "rowsPerPage": "每頁筆數"
+  },
+  "message": {
+    "success": "操作成功",
+    "error": "操作失敗",
+    "confirm": "確定要執行此操作嗎？",
+    "deleteConfirm": "確定要刪除嗎？"
+  },
+  "charts": {
+    "title": "圖表展示",
+    "barChart": "長條圖",
+    "pieChart": "圓餅圖",
+    "lineChart": "折線圖",
+    "radarChart": "雷達圖"
+  },
+  "chartTable": {
+    "title": "產品銷售數據分析",
+    "chartTitle": "銷售長條圖",
+    "tableTitle": "產品詳細資料",
+    "chartSubtitle": "各產品銷售數量統計",
+    "yAxisLabel": "銷售數量",
+    "seriesName": "銷售量",
+    "headers": {
+      "name": "產品名稱",
+      "category": "產品類別",
+      "value": "銷售數量",
+      "status": "銷售狀態",
+      "description": "產品描述"
+    }
+  },
+  "osUsage": {
+    "title": "操作系統使用統計",
+    "subtitle": "各平台使用者數據分析",
+    "unit": "單位",
+    "trendChart": "月度趨勢折線圖",
+    "distributionChart": "操作系統分布柱狀圖",
+    "chartTitle": "各平台使用趨勢",
+    "barChartTitle": "各操作系統月度使用量",
+    "headers": {
+      "os": "操作系統"
+    },
+    "stats": {
+      "total": "總用戶數",
+      "totalDesc": "所有平台總計",
+      "mobile": "行動裝置",
+      "desktop": "桌面系統",
+      "web": "網頁端",
+      "ofTotal": "佔比"
+    }
+  },
+  "kpiOverview": {
+    "tabs": {
+      "kpi": "KPI 指標",
+      "osData": "系統數據"
+    },
+    "kpi": {
+      "title": "關鍵績效指標",
+      "expandAll": "展開全部",
+      "collapseAll": "收合全部",
+      "headers": {
+        "indicator": "指標名稱",
+        "target": "目標值",
+        "actual": "實際值",
+        "achievement": "達成率",
+        "trend": "趨勢"
+      }
+    },
+    "osData": {
+      "title": "作業系統使用統計",
+      "tableTitle": "月度使用者數據",
+      "chartTitle": "趨勢分析",
+      "summaryTitle": "平台數據總覽",
+      "headers": {
+        "platform": "平台"
+      },
+      "summaryHeaders": {
+        "platform": "平台名稱",
+        "category": "平台分類",
+        "users": "使用者數",
+        "sessions": "會話數",
+        "avgDuration": "平均時長",
+        "status": "狀態",
+        "change": "變化率"
+      }
+    }
+  },
+  "notificationDemo": {
+    "title": "通知組件示範"
+  },
+  "pivotTable": {
+    "title": "數據透視表分析",
+    "subtitle": "互動式數據透視表",
+    "rawDataTitle": "原始數據",
+    "machineCountTitle": "機號重複統計",
+    "barChartTitle": "機號統計長條圖",
+    "barChartSubtitle": "各機號出現次數統計",
+    "times": "次",
+    "headers": {
+      "keyNo": "編號",
+      "number": "機號",
+      "remark": "備註",
+      "datetime": "日期時間",
+      "count": "重複次數"
+    }
+  }
+}

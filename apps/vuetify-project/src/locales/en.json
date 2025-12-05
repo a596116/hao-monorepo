@@ -1,0 +1,160 @@
+{
+  "common": {
+    "appTitle": "Vuetify Project",
+    "welcome": "Welcome",
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact Us",
+    "login": "Login",
+    "logout": "Logout",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "search": "Search",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "select": "Select",
+    "selectFile": "Select File",
+    "openDialog": "Open Dialog",
+    "visitCount": "Visit Count"
+  },
+  "menu": {
+    "home": "Home",
+    "charts": "Charts",
+    "chartTable": "Chart & Table",
+    "osUsage": "OS Statistics",
+    "kpiOverview": "KPI Overview",
+    "pivotTable": "Pivot Table",
+    "notificationDemo": "Notification Demo",
+    "drawerDemo": "Drawer",
+    "loadingDemo": "Loading",
+    "inputDemo": "Input",
+    "i18nDemo": "i18n Demo",
+    "componentsDemo": "Components Demo",
+    "datetimeDemo": "DateTime Input"
+  },
+  "user": {
+    "profile": "Profile",
+    "settings": "Settings",
+    "role": "Administrator"
+  },
+  "table": {
+    "title": "Table",
+    "expandAll": "Expand All",
+    "collapseAll": "Collapse All",
+    "name": "Name",
+    "category": "Category",
+    "count": "Count",
+    "status": "Status",
+    "noData": "No Data",
+    "rowsPerPage": "Rows per page"
+  },
+  "message": {
+    "success": "Operation Successful",
+    "error": "Operation Failed",
+    "confirm": "Are you sure you want to proceed?",
+    "deleteConfirm": "Are you sure you want to delete?"
+  },
+  "charts": {
+    "title": "Charts Demo",
+    "barChart": "Bar Chart",
+    "pieChart": "Pie Chart",
+    "lineChart": "Line Chart",
+    "radarChart": "Radar Chart"
+  },
+  "chartTable": {
+    "title": "Product Sales Data Analysis",
+    "chartTitle": "Sales Bar Chart",
+    "tableTitle": "Product Details",
+    "chartSubtitle": "Sales Statistics by Product",
+    "yAxisLabel": "Sales Quantity",
+    "seriesName": "Sales",
+    "headers": {
+      "name": "Product Name",
+      "category": "Product Category",
+      "value": "Sales Quantity",
+      "status": "Sales Status",
+      "description": "Product Description"
+    }
+  },
+  "osUsage": {
+    "title": "Operating System Usage Statistics",
+    "subtitle": "User Data Analysis by Platform",
+    "unit": "Unit",
+    "trendChart": "Monthly Trend Line Chart",
+    "distributionChart": "OS Distribution Bar Chart",
+    "chartTitle": "Platform Usage Trends",
+    "barChartTitle": "Monthly Usage by Operating System",
+    "headers": {
+      "os": "Operating System"
+    },
+    "stats": {
+      "total": "Total Users",
+      "totalDesc": "All Platforms Combined",
+      "mobile": "Mobile Devices",
+      "desktop": "Desktop Systems",
+      "web": "Web Platform",
+      "ofTotal": "of Total"
+    }
+  },
+  "kpiOverview": {
+    "tabs": {
+      "kpi": "KPI Metrics",
+      "osData": "System Data"
+    },
+    "kpi": {
+      "title": "Key Performance Indicators",
+      "expandAll": "Expand All",
+      "collapseAll": "Collapse All",
+      "headers": {
+        "indicator": "Indicator",
+        "target": "Target",
+        "actual": "Actual",
+        "achievement": "Achievement",
+        "trend": "Trend"
+      }
+    },
+    "osData": {
+      "title": "Operating System Usage Statistics",
+      "tableTitle": "Monthly User Data",
+      "chartTitle": "Trend Analysis",
+      "summaryTitle": "Platform Data Overview",
+      "headers": {
+        "platform": "Platform"
+      },
+      "summaryHeaders": {
+        "platform": "Platform Name",
+        "category": "Category",
+        "users": "Users",
+        "sessions": "Sessions",
+        "avgDuration": "Avg Duration",
+        "status": "Status",
+        "change": "Change Rate"
+      }
+    }
+  },
+  "notificationDemo": {
+    "title": "Notification Component Demo"
+  },
+  "pivotTable": {
+    "title": "Pivot Table Analysis",
+    "subtitle": "Interactive Pivot Table",
+    "rawDataTitle": "Raw Data",
+    "machineCountTitle": "Machine Number Duplicate Count",
+    "barChartTitle": "Machine Number Statistics Bar Chart",
+    "barChartSubtitle": "Count Statistics by Machine Number",
+    "times": "times",
+    "headers": {
+      "keyNo": "Key Number",
+      "number": "Machine Number",
+      "remark": "Remark",
+      "datetime": "Date Time",
+      "count": "Count"
+    }
+  }
+}
