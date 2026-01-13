@@ -1,6 +1,6 @@
 <template>
   <div class="app-layout">
-    <Sidebar v-model:collapsed="appStore.rail" />
+    <Menu v-model:collapsed="appStore.rail" />
     <div
       class="main-content"
       :style="{ marginLeft: appStore.rail ? '60px' : '260px', transition: 'margin-left 0.3s ease' }"

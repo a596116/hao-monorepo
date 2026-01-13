@@ -12,14 +12,30 @@
               <v-card-text>
                 <!-- Pivot Table -->
                 <div class="pivot-container">
-                  <PivotTable
+                  <VuePivottableUi
                     :data="pivotData"
-                    :rows="['number']"
-                    :cols="['KEY_NO']"
-                    :vals="['number']"
-                    aggregator-name="Count"
-                    :renderer-name="'Bar Chart'"
+                    :rows="['PartNum', 'rev', 'Layer']"
+                    :cols="['ProcName', 'MachineNo']"
+                    :vals="['Done']"
+                    :aggregators="customAggregators"
+                    aggregator-name="Count Done=否"
+                    renderer-name="Table with Links"
                     :renderers="renderers"
+                    :show-col-total="true"
+                    :show-row-total="true"
+                  >
+                  </VuePivottableUi>
+
+                  <TableWithLinksRenderer
+                    :data="pivotData"
+                    :rows="['PartNum', 'rev', 'Layer']"
+                    :cols="['ProcName', 'MachineNo']"
+                    :vals="['Done']"
+                    :aggregators="customAggregators"
+                    :cell-renderer="customCellRenderer"
+                    :show-col-total="false"
+                    :show-row-total="false"
+                    aggregator-name="Count Done=否"
                   />
                 </div>
               </v-card-text>
@@ -28,7 +44,7 @@
         </v-row>
 
         <!-- 原始數據表格 -->
-        <v-row class="mt-4">
+        <!-- <v-row class="mt-4">
           <v-col cols="12">
             <v-card variant="outlined">
               <v-card-title>{{ t("pivotTable.rawDataTitle") }}</v-card-title>
@@ -52,76 +68,28 @@
               </v-card-text>
             </v-card>
           </v-col>
-        </v-row>
+        </v-row> -->
       </v-card-text>
     </v-card>
   </v-container>
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, markRaw } from "vue"
+import { ref, computed, markRaw, h } from "vue"
 import { useI18n } from "vue-i18n"
-import { VuePivottableUi, Renderer } from "vue-pivottable"
+import { VuePivottableUi, Renderer, PivotUtilities } from "vue-pivottable"
 import "vue-pivottable/dist/vue-pivottable.css"
 import type { DataTableHeader } from "vuetify"
 import PlotlyRenderer from "@vue-pivottable/plotly-renderer"
 import EChartsBarChartRenderer from "@/components/EChartsBarChartRenderer.vue"
 import EChartsBarChartRenderer2 from "@/components/EChartsBarChartRenderer2.vue"
+import TableWithLinksRenderer from "@/components/TableWithLinksRenderer.vue"
+import { pivotTableData, type PivotDataItem } from "@/data/pivot-table-data"
 
 const { t } = useI18n()
 
-// 類型轉換以解決 vue-pivottable 的類型定義問題
-const PivotTable = markRaw(VuePivottableUi as any)
-
-// 資料介面
-interface PivotDataItem {
-  KEY_NO: string
-  number: string
-  remark: string
-  datetime: string
-}
-
-// 產生示例資料（確保有重複的機號和編號）
-const generateSampleData = (): PivotDataItem[] => {
-  const remarks = ["正常", "異常", "待處理", "已完成", "進行中"]
-  const dates = ["2024-01-15", "2024-01-16", "2024-01-17", "2024-01-18", "2024-01-19", "2024-01-20", "2024-01-21"]
-
-  // 定義一些編號，讓它們會重複出現
-  const keyNumbers = [
-    "KEY0001",
-    "KEY0002",
-    "KEY0003",
-    "KEY0004",
-    "KEY0005",
-    "KEY0006",
-    "KEY0007",
-    "KEY0008",
-    "KEY0009",
-    "KEY0010",
-    "KEY0011",
-    "KEY0012"
-  ]
-
-  // 定義一些機號，讓它們會重複出現
-  const machineNumbers = ["M001", "M002", "M003", "M004", "M005", "M006", "M007", "M008", "M009", "M010"]
-
-  const data: PivotDataItem[] = []
-
-  for (let i = 1; i <= 50; i++) {
-    data.push({
-      KEY_NO: `KEY1234`,
-      // KEY_NO: keyNumbers[Math.floor(Math.random() * keyNumbers.length)] || 'KEY0001',
-      number: machineNumbers[Math.floor(Math.random() * machineNumbers.length)] || "M001",
-      remark: remarks[Math.floor(Math.random() * remarks.length)] || "正常",
-      datetime: dates[Math.floor(Math.random() * dates.length)] || dates[0]!
-    })
-  }
-
-  return data
-}
-
 // Pivot Table 資料
-const pivotData = ref<PivotDataItem[]>(generateSampleData())
+const pivotData = ref<PivotDataItem[]>(pivotTableData)
 
 // 表格標題
 const headers = computed<DataTableHeader[]>(() => [
@@ -136,11 +104,79 @@ const formatDateTime = (datetime: string) => {
   return datetime
 }
 
+// 自定義 cell renderer 函數（返回內容和樣式）
+const customCellRenderer = ({ value, rowKey, colKey, rowAttrs, colAttrs }: any) => {
+  // 構建 URL 參數
+  const params = new URLSearchParams()
+  rowAttrs.forEach((attr: string, idx: number) => {
+    if (rowKey[idx]) params.set(attr.toLowerCase(), rowKey[idx])
+  })
+  colAttrs.forEach((attr: string, idx: number) => {
+    if (colKey[idx]) params.set(attr.toLowerCase(), colKey[idx])
+  })
+
+  // 根據數值決定樣式
+  const isZero = value === 0
+  const backgroundColor = isZero ? "#4caf5050" : "#ffebee"
+
+  return {
+    content: h(
+      "a",
+      {
+        href: `/detail?${params.toString()}`,
+        style: {
+          fontSize: "14px",
+          textDecoration: "none",
+          transition: "opacity 0.2s"
+        }
+      },
+      value.toString()
+    ),
+    style: { backgroundColor }
+  }
+}
+
+// 合併預設聚合器和自定義聚合器
+const customAggregators: any = {
+  // 展開所有預設的聚合器（Count, Sum, Average, Min, Max 等）
+  ...PivotUtilities.aggregators,
+
+  // 自定義聚合器：只統計 Done = "否" 的數量
+  "Count Done=否": () => () => {
+    return {
+      count: 0,
+      push(record: PivotDataItem) {
+        if (record.Done === "否") {
+          this.count++
+        }
+      },
+      value() {
+        return this.count
+      },
+      format(x: number) {
+        return x.toString()
+      }
+    }
+  }
+}
+
 // 使用 markRaw 標記 renderers，避免組件被響應式化
-const renderers = markRaw({
-  ...PlotlyRenderer,
+// 創建一個包裝 renderer，將 cellRenderer 傳遞給 TableWithLinksRenderer
+const TableWithLinksRendererWrapper = {
+  name: "TableWithLinksRendererWrapper",
+  props: { ...PivotUtilities.defaultProps },
+  setup(props: any) {
+    return () =>
+      h(TableWithLinksRenderer, {
+        ...props,
+        cellRenderer: customCellRenderer
+      })
+  }
+}
+
+const renderers: any = markRaw({
   ...Renderer,
-  "Bar Chart": markRaw(EChartsBarChartRenderer)
+  "Table with Links": markRaw(TableWithLinksRendererWrapper)
 })
 </script>
 

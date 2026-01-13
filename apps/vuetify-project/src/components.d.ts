@@ -31,11 +31,13 @@ declare module 'vue' {
     Message: typeof import('./components/Message.vue')['default']
     MessageBox: typeof import('./components/MessageBox.vue')['default']
     Notification: typeof import('./components/Notification.vue')['default']
+    PivotTableWithLinks: typeof import('./components/PivotTableWithLinks.vue')['default']
     ProSidebarDemo: typeof import('./components/ProSidebarDemo.vue')['default']
     ProSidebarMenuItem: typeof import('./components/ProSidebarMenuItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Sidebar: typeof import('./components/Layout/Sidebar.vue')['default']
+    TableWithLinksRenderer: typeof import('./components/TableWithLinksRenderer.vue')['default']
     TimePicker: typeof import('./components/TimePicker.vue')['default']
     UserInfo: typeof import('./components/Layout/UserInfo.vue')['default']
   }
